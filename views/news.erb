@@ -23,7 +23,29 @@
   <body>
 
     <div class="container mt-5">
-      <h1>News</h1>
+      <h1>Weather</h1>
+      <hr>
+      <h2>Current</h2>
+      <h5> <%= @forecast["current"]["weather"][0]["main"] %>
+      <%= @forecast["current"]["temp"] %> (Celcius)</h5>
+      <hr>
+      <h2>Forecast</h2>
+         <% for day in @forecast["daily"] %>
+         <%= day["weather"][0]["main"] %></h5>
+         <p><%= day["temp"]["max"].round(1) %> (Celcius) </p>
+         <% end %>
+    
+     <hr>
+      <h2>News</h2>
+         <% for news in @news["articles"] %>
+            <p><%= news["title"] %></p>
+            <p><%= news["content"] %></p>
+            <a href="<%= news["url"] %>" class="btn btn-primary card-btn">..More</a>
+            <% end %>
+        
+    <hr>
+
+
     </div>
 
     <!-- Optional JavaScript -->

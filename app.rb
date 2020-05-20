@@ -9,8 +9,8 @@ get "/" do
   lat = 42.0574063
   long = -87.6722787
 
-  units = "imperial" # or metric, whatever you like
-  key = "YOUR-API-KEY-GOES-HERE" # replace this with your real OpenWeather API key
+  units = "metric" # or imperial, whatever you like
+  key = "7c9512cb0254c92d9b41b22e973a51a2" # replace this with your real OpenWeather API key
 
   # construct the URL to get the API data (https://openweathermap.org/api/one-call-api)
   url = "https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{long}&units=#{units}&appid=#{key}"
@@ -19,4 +19,8 @@ get "/" do
   @forecast = HTTParty.get(url).parsed_response.to_hash
 
   ### Get the news
+  url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=a8d78b6bd51a47ac9cb2ebeaf8a9c22b"
+  @news = HTTParty.get(url).parsed_response.to_hash
+
+  view "news"
 end
